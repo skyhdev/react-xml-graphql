@@ -1,25 +1,18 @@
-import React from "react";
-import LoginScreen from "./components/LoginScreen";
-import TaskApp from "./TaskApp";
-import RealmApolloProvider from "./graphql/RealmApolloProvider";
-import { useRealmApp, RealmAppProvider } from "./RealmApp";
+import './App.css';
+import { BrowserRouter, Switch, Route } from "react-router-dom";
+import Layout from './components/shared/Layout';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import Dashboard from './components/dashboard/Dashboard';
 
-export const APP_ID = "<your Realm app ID here>";
-
-const RequireLoggedInUser = ({ children }) => {
-  // Only render children if there is a logged in user.
-  const app = useRealmApp();
-  return app.currentUser ? children : <LoginScreen />;
-};
-
-export default function App() {
+function App() {
   return (
-    <RealmAppProvider appId={APP_ID}>
-      <RequireLoggedInUser>
-        <RealmApolloProvider>
-          <TaskApp />
-        </RealmApolloProvider>
-      </RequireLoggedInUser>
-    </RealmAppProvider>
+    <BrowserRouter>
+      <Switch>
+        <Route path="/" exact component={Layout} />
+        <Route path="/dashboard" exact component={Dashboard} />
+      </Switch>
+    </BrowserRouter>
   );
 }
+
+export default App;
