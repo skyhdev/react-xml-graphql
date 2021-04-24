@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import Layout from '../shared/Layout'
 import './dashboard.css'
-import * as RiIcon from "react-icons/ri";
 
 function Dashboard() {
     const [drag, setDrag] = useState(false);
@@ -52,7 +51,7 @@ function Dashboard() {
         <Layout>
             <div>
                 <div className="container">
-                    <div className="my-5 py-2 px-3 mb-3 border">
+                    <div className="descContainer my-5 py-2 px-3 mb-3 border">
                         <div className="headerTitle mb-2">
                             hi
                         </div>

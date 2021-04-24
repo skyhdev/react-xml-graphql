@@ -5,10 +5,10 @@ import "../../styles/header.css";
 
 const Header = (props) => {
     return (
-        <Navbar bg="light" expand="lg">
+        <Navbar expand="lg" className="headerClass">
             <div>
                 {
-                    props.toggleSidebar ? <></> : <FaIcons.FaBars onClick={() => props.setToggleSidebar(!props.toggleSidebar)} className="toggleBtn" />
+                    props.toggleSidebar ? <></> : <FaIcons.FaBars onClick={() => props.setToggleSidebar(!props.toggleSidebar)} className="toggleBtn ml-2" />
                 }
             </div>
             <div className="ml-auto">

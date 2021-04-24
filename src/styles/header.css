@@ -1,9 +1,10 @@
 .headerClass {
     background-color: #F0F8FB;
+    height: 55px;
 }
 
 .toggleBtn {
-    font-size: 2rem;
+    font-size: 1.8rem;
     cursor: pointer;
 }
 

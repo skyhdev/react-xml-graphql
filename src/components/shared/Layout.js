@@ -29,6 +29,7 @@ export default function Layout(props) {
         .content-container{
             height: 100vh;
             width: 100%;
+            background-color: #F4F4F4;
         }
       `}</style>
     </div>

@@ -1,7 +1,7 @@
 .sidebarMenu {
     position: relative;
     height: 100%;
-    width: 80px;
+    width: 66px;
     background-color: #007EA7;
     align-items: flex-start !important;
 }
@@ -9,9 +9,13 @@
 .sidebarMenuToggle {
     position: fixed;
     height: 100%;
-    width: 260px;
+    width: 240px;
     align-items: flex-start !important;
     background-color: #007EA7;
+}
+
+.navbar {
+    padding: unset !important;
 }
 
 .closeBtn {
@@ -22,11 +26,11 @@
 
 .linkIcon {
     color: #ffffff;
-    font-size: 2.5rem;
+    font-size: 2.1rem;
     opacity: 0.8;
 }
 
 .linkName {
     color: #ffffff;
-    font-size: 1.5rem
+    font-size: 1.2rem
 }
