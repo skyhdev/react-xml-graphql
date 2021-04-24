@@ -1,13 +1,10 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { Link } from 'react-router-dom';
 import { Nav, NavDropdown, Navbar } from 'react-bootstrap';
 import '../../styles/sidebar.css'
 import * as RiIcon from "react-icons/ri";
 
 function Sidebar(props) {
-    useEffect(() => {
-
-    })
     const data = [
         {
             'name': 'Dashboard',
