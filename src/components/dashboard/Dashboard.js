@@ -38,9 +38,11 @@ function Dashboard() {
 
         return () => {
             let div = dropRef.current
-            div.removeEventListener('dragenter', handleDragIn)
-            div.removeEventListener('dragover', handleDrag)
-            div.removeEventListener('drop', handleDrop)
+            if (div) {
+                div.removeEventListener('dragenter', handleDragIn)
+                div.removeEventListener('dragover', handleDrag)
+                div.removeEventListener('drop', handleDrop)
+            }
         }
     }, []);
     useEffect(() => {

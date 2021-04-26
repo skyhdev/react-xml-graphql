@@ -1,9 +1,15 @@
 import React, { useState } from 'react'
 import Header from './Header';
 import Sidebar from './Sidebar'
+import { useHistory } from "react-router-dom";
+import netlifyIdentity from 'netlify-identity-widget'
 
 export default function Layout(props) {
+  const history = useHistory();
   const [toggleSidebar, setToggleSidebar] = useState(false);
+  if (netlifyIdentity && netlifyIdentity.currentUser()) { } else {
+    history.push("/");
+  }
   return (
     <div>
       <div className="wrapper">

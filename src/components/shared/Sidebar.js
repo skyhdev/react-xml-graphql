@@ -1,10 +1,22 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { Nav, NavDropdown, Navbar } from 'react-bootstrap';
-import '../../styles/sidebar.css'
+import { Navbar } from 'react-bootstrap';
+import netlifyIdentity from "netlify-identity-widget";
+import { useHistory } from "react-router-dom";
 import * as RiIcon from "react-icons/ri";
+import '../../styles/sidebar.css'
 
 function Sidebar(props) {
+    let history = useHistory();
+    let logout = () => {
+        netlifyIdentity.logout();
+
+        netlifyIdentity.on('logout', () => {
+            history.push("/");
+        });
+
+    }
+
     const data = [
         {
             'name': 'Dashboard',
@@ -20,7 +32,7 @@ function Sidebar(props) {
             'name': 'Transakjoner',
             'link': 'dashboard',
             'icon': <RiIcon.RiShoppingCart2Line className="linkIcon" />
-        },
+        }
     ]
     if (props.toggleSidebar) {
         return (
@@ -45,6 +57,12 @@ function Sidebar(props) {
                             </div>
                         )
                     })}
+                    <div className="p-2 mb-1 logout" onClick={logout} key={"logout_toggle"}>
+                        <div className="d-flex items-center align-items-center">
+                            <span><RiIcon.RiLogoutCircleLine className="linkIcon" /></span>
+                            <span className="linkName ml-2">Logout</span>
+                        </div>
+                    </div>
                 </div>
             </Navbar>
         )
@@ -61,6 +79,11 @@ function Sidebar(props) {
                         </div>
                     )
                 })}
+                <div className="p-2 mb-1 text-center logout" onClick={logout} key="logout">
+                    <div>
+                        <span><RiIcon.RiLogoutCircleLine className="linkIcon" /></span>
+                    </div>
+                </div>
             </div>
         </Navbar>
     )
