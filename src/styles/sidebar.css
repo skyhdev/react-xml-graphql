@@ -7,11 +7,11 @@
 }
 
 .sidebarMenuToggle {
-    position: fixed;
     height: 100%;
     width: 240px;
     align-items: flex-start !important;
     background-color: #007EA7;
+    z-index: 999;
 }
 
 .navbar {

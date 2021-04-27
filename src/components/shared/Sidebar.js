@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { Navbar } from 'react-bootstrap';
-import netlifyIdentity from "netlify-identity-widget";
 import { useHistory } from "react-router-dom";
 import * as RiIcon from "react-icons/ri";
 import '../../styles/sidebar.css'
@@ -9,12 +8,16 @@ import '../../styles/sidebar.css'
 function Sidebar(props) {
     let history = useHistory();
     let logout = () => {
-        netlifyIdentity.logout();
-
         netlifyIdentity.on('logout', () => {
-            history.push("/");
+            window.history.replaceState(null, null, "/");
+            history.replace("/");
         });
-
+        netlifyIdentity.close();
+        netlifyIdentity.logout();
+        if (!localStorage.getItem("gotrue.user")) {
+            window.history.replaceState(null, null, "/");
+            history.replace("/");
+        }
     }
 
     const data = [

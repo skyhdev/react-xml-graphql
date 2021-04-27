@@ -1,15 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Header from './Header';
 import Sidebar from './Sidebar'
 import { useHistory } from "react-router-dom";
-import netlifyIdentity from 'netlify-identity-widget'
 
 export default function Layout(props) {
   const history = useHistory();
   const [toggleSidebar, setToggleSidebar] = useState(false);
-  if (netlifyIdentity && netlifyIdentity.currentUser()) { } else {
-    history.push("/");
-  }
+  useEffect(() => {
+    if (!netlifyIdentity.currentUser()) {
+      netlifyIdentity.on('init', user => {
+        if (!user) {
+          return history.push("/");
+        }
+      });
+      netlifyIdentity.close();
+      netlifyIdentity.init();
+    }
+    if (!netlifyIdentity.currentUser()) {
+      return history.push("/");
+    }
+  }, []);
+
+
   return (
     <div>
       <div className="wrapper">
@@ -37,6 +49,7 @@ export default function Layout(props) {
             width: 100%;
             background-color: #F4F4F4;
         }
+        
       `}</style>
     </div>
   )

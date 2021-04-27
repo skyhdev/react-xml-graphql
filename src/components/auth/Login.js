@@ -1,15 +1,18 @@
 import React, { Component, useEffect } from 'react';
 import { useHistory } from "react-router-dom";
-import netlifyIdentity from 'netlify-identity-widget'
-import "./login.css"
 
-const Login = () => {
+function Login(props) {
     const history = useHistory();
-    function openNetlifyModal() {
+    const openNetlifyModal = () => {
         if (netlifyIdentity) {
+            netlifyIdentity.init();
             netlifyIdentity.open();
-            netlifyIdentity.on('login', user => {
-                localStorage.setItem('token', user.token.access_token)
+            if (props && props?.type == "signup") {
+                netlifyIdentity.open('signup');
+            } else {
+                netlifyIdentity.open('login');
+            }
+            netlifyIdentity.on('login', async (user) => {
                 netlifyIdentity.close();
                 history.push("/dashboard");
             });
@@ -18,21 +21,22 @@ const Login = () => {
                 history.push("/");
             });
         }
-        else {
-            history.push("/");
-        }
     }
 
+
     useEffect(() => {
+        //check user already login or not
         if (netlifyIdentity && netlifyIdentity.currentUser()) {
+            netlifyIdentity.close();
             history.push("/dashboard");
         }
         netlifyIdentity.init({
-            container: '#netlify-modal',
+            container: '#netlify-modal', // connect widget to div tag(div id)
             locale: 'en'
         });
         openNetlifyModal();
-    }, [])
+    }, []);
+
     return (
         <div id="netlify-modal">
         </div>
