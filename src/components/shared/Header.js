@@ -5,7 +5,7 @@ import "../../styles/header.css";
 import { useTranslation } from 'react-i18next';
 
 const Header = (props) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
     const changeLanguage = (e) => {
         const lang = e.target.value;
         i18n.changeLanguage(lang);
