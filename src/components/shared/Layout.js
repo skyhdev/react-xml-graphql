@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import Header from './Header';
 import Sidebar from './Sidebar'
 import { useHistory } from "react-router-dom";
+import netlifyIdentity from 'netlify-identity-widget';
 
 export default function Layout(props) {
   const history = useHistory();
@@ -10,14 +11,10 @@ export default function Layout(props) {
     if (!netlifyIdentity.currentUser()) {
       netlifyIdentity.on('init', user => {
         if (!user) {
-          return history.push("/");
+          history.push("/login");
         }
       });
-      netlifyIdentity.close();
       netlifyIdentity.init();
-    }
-    if (!netlifyIdentity.currentUser()) {
-      return history.push("/");
     }
   }, []);
 

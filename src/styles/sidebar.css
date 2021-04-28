@@ -8,7 +8,7 @@
 
 .sidebarMenuToggle {
     height: 100%;
-    width: 240px;
+    width: 200px;
     align-items: flex-start !important;
     background-color: #007EA7;
     z-index: 999;
@@ -16,6 +16,22 @@
 
 .navbar {
     padding: unset !important;
+}
+
+.logoContainer {
+    padding-left: 0.8rem;
+    align-self: center;
+}
+
+.logoSvg {
+    transform: rotate(-45deg);
+}
+
+.logoTitle {
+    align-self: center;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: 500;
 }
 
 .closeBtn {
@@ -26,13 +42,13 @@
 
 .linkIcon {
     color: #ffffff;
-    font-size: 2.1rem;
+    font-size: 2rem;
     opacity: 0.8;
 }
 
 .linkName {
     color: #ffffff;
-    font-size: 1.2rem
+    font-size: 1.1rem
 }
 
 .logout {

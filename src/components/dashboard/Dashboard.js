@@ -1,8 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react'
-import Layout from '../shared/Layout'
-import './dashboard.css'
+import React, { useEffect, useRef, useState } from 'react';
+import Layout from '../shared/Layout';
+import './dashboard.css';
+import { useTranslation } from 'react-i18next';
 
 function Dashboard() {
+    const { t } = useTranslation();
     const [drag, setDrag] = useState(false);
     const [file, setFile] = useState(null);
     const dropRef = useRef(null);
@@ -50,7 +52,7 @@ function Dashboard() {
     }, [file])
 
     return (
-        <Layout>
+        <Layout active="Dashboard">
             <div>
                 <div className="container">
                     <div className="descContainer my-5 py-2 px-3 mb-3 border">
@@ -67,12 +69,12 @@ function Dashboard() {
                     <div className="fileUploadContainer" ref={dropRef}>
                         <div className="fileUploadContain"           >
                             <div className="fileUpload">
-                                <div className="mb-2 dropText">Drop here...</div>
+                                <div className="mb-2 dropText">{t('DropHere')}</div>
                                 <div className="mb-2 fileInput">
                                     <input type="file" ref={selectRef} onChange={onSelectFile} />
                                 </div>
                                 <div>
-                                    <button className="uploadBtn">Upload</button>
+                                    <button className="uploadBtn">{t('Upload')}</button>
                                 </div>
                             </div>
                         </div>
