@@ -28,8 +28,8 @@ function Sidebar(props) {
             'icon': <RiIcon.RiDashboard3Line className="linkIcon" />
         },
         {
-            'name': 'Leverandorer',
-            'link': 'dashboard',
+            'name': 'Suppliers',
+            'link': 'suppliers',
             'icon': <RiIcon.RiTruckLine className="linkIcon" />
         },
         {

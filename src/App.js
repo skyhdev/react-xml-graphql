@@ -6,6 +6,7 @@ import Login from './components/auth/Login';
 import Signup from './components/auth/Signup';
 import netlifyIdentity from 'netlify-identity-widget';
 import Main from './components/Main';
+import Suppliers from './components/supplier/Suppliers';
 
 function App() {
   window.netlifyIdentity = netlifyIdentity;
@@ -18,6 +19,7 @@ function App() {
         <Route path="/login" exact component={Login} type="login" />
         <Route path="/signup" exact component={Signup} />
         <Route path="/dashboard" exact component={Dashboard} />
+        <Route path="/suppliers" exact component={Suppliers} />
       </Switch>
     </BrowserRouter>
   );
