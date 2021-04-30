@@ -5,7 +5,7 @@ import Layout from '../shared/Layout';
 const Suppliers = () => {
     const { t } = useTranslation();
     return (
-        <Layout>
+        <Layout active="Suppliers">
             Suppliers
         </Layout>
     )

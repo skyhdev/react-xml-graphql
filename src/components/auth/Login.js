@@ -16,7 +16,8 @@ function Login(props) {
         netlifyIdentity.on('login', async (user) => {
             if (user) {
                 netlifyIdentity.close()
-                return history.push("/dashboard");
+                localStorage.setItem("email", user.email)
+                return history.push("/welcome");
             }
         });
     }
@@ -29,7 +30,6 @@ function Login(props) {
         });
         //check user already login or not
         if (netlifyIdentity.currentUser()) {
-            console.log("forwarding to dashboard")
             return history.push("/dashboard");
         }
         openNetlifyModal();

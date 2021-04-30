@@ -18,6 +18,20 @@
     padding: unset !important;
 }
 
+.active {
+    background-color: #3A93B0;
+    border-radius: 35px;
+}
+
+.sidebarLink:hover {
+    background-color: #3A93B0;
+    border-radius: 35px;
+}
+
+.linkTag {
+    text-decoration: none !important;
+}
+
 .logoContainer {
     padding-left: 0.8rem;
     align-self: center;

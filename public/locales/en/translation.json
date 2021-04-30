@@ -5,5 +5,8 @@
     "Support": "Support",
     "DropHere": "Drop here...",
     "Upload": "Upload",
-    "Logout": "Logout"
+    "Logout": "Logout",
+    "UploadTitle": "Velkommen",
+    "UploadSubTitle": "For å komme igang så må vi ha litt data.",
+    "UploadDesc": "Det enkleste er å laste opp en SAF-T fil nedenfor så er vi i gang. Er filen din stor(>20MB) bør du komprimere den med zip først så går det litt fortere."
 }

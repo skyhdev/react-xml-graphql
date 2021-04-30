@@ -6,7 +6,8 @@ import netlifyIdentity from 'netlify-identity-widget';
 
 export default function Layout(props) {
   const history = useHistory();
-  const [toggleSidebar, setToggleSidebar] = useState(false);
+  const [toggleSidebar, setToggleSidebar] = useState(true);
+
   useEffect(() => {
     if (!netlifyIdentity.currentUser()) {
       netlifyIdentity.on('init', user => {
@@ -24,10 +25,10 @@ export default function Layout(props) {
       <div className="wrapper">
         <div className="parent-container">
           <div className="side-bar">
-            <Sidebar toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar} />
+            <Sidebar toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar} active={props.active} />
           </div>
           <div className="content-container">
-            <Header toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar} />
+            <Header toggleSidebar={toggleSidebar} setToggleSidebar={setToggleSidebar} active={props.active} />
             {props.children}
           </div>
         </div>

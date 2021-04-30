@@ -8,7 +8,8 @@ const Main = () => {
     useEffect(() => {
         netlifyIdentity.init();
         netlifyIdentity.currentUser() ? history.push("/dashboard") : history.push("/login");
-    }, [])
+    }, []);
+
     return (
         <div></div >
     )

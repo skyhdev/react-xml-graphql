@@ -16,3 +16,7 @@
     border-radius: 4px;
     position: relative;
 }
+
+.feedbackDiv {
+    cursor: pointer;
+}
