@@ -31,7 +31,7 @@ export const RealmAppProvider = ({ appId, children }) => {
     async function signup(email) {
         try {
             await app.emailPasswordAuth.registerUser(email, password);
-            let user = await logIn(email);
+            let user = await login(email);
 
             return user;
         } catch (error) {
