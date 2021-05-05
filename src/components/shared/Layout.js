@@ -34,7 +34,7 @@ export default function Layout(props) {
         </div>
       </div>
 
-      <style jsx global>{`
+      <style jsx="true">{`
         .wrapper{
             align-items: stretch;
             max-height: 100vh;

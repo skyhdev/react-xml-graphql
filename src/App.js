@@ -7,21 +7,32 @@ import Signup from './components/auth/Signup';
 import Main from './components/Main';
 import Suppliers from './components/supplier/Suppliers';
 import Dashboard from './components/dashboard/Dashboard';
+import { useRealmApp, RealmAppProvider } from './components/realm/RealmAppProvider';
+
+const Test = ({ children }) => {
+  const app = useRealmApp();
+  return children;
+}
 
 function App() {
   require('dotenv').config();
-  global.toggleValue = true;
+  const appId = "application-0-tlzvh";
   return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/" exact component={Main} />
-        <Route path="/login" exact component={Login} type="login" />
-        <Route path="/signup" exact component={Signup} />
-        <Route path="/welcome" exact component={Welcome} />
-        <Route path="/dashboard" exact component={Dashboard} />
-        <Route path="/suppliers" exact component={Suppliers} />
-      </Switch>
-    </BrowserRouter>
+
+    <RealmAppProvider appId={appId}>
+      <Test>
+        <BrowserRouter>
+          <Switch>
+            <Route path="/" exact component={Main} />
+            <Route path="/login" exact component={Login} type="login" />
+            <Route path="/signup" exact component={Signup} />
+            <Route path="/welcome" exact component={Welcome} />
+            <Route path="/dashboard" exact component={Dashboard} />
+            <Route path="/suppliers" exact component={Suppliers} />
+          </Switch>
+        </BrowserRouter>
+      </Test>
+    </RealmAppProvider>
   );
 }
 

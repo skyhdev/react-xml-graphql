@@ -1,11 +1,17 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useHistory } from "react-router-dom";
 import netlifyIdentity from 'netlify-identity-widget';
+import { useRealmApp } from '../realm/RealmAppProvider';
+import { Spinner } from 'react-bootstrap';
+import "./login.css"
 
 function Login(props) {
-    const history = useHistory();
+    const [isNetlifyClosed, setIsNetlifyClosed] = useState(false);
 
+    const history = useHistory();
+    const app = useRealmApp();
     const openNetlifyModal = () => {
+
         netlifyIdentity.open();
         if (props && props?.type == "signup") {
             netlifyIdentity.open('signup');
@@ -15,8 +21,14 @@ function Login(props) {
 
         netlifyIdentity.on('login', async (user) => {
             if (user) {
-                netlifyIdentity.close()
-                localStorage.setItem("email", user.email)
+                localStorage.setItem("email", user.email);
+                netlifyIdentity.close();
+                setIsNetlifyClosed(true);
+                let userData = await app.login(user.email);
+                if (!userData) {
+                    userData = await app.signup(user.email)
+                }
+                console.log(userData);
                 return history.push("/welcome");
             }
         });
@@ -34,10 +46,15 @@ function Login(props) {
         }
         openNetlifyModal();
 
+        return () => {
+            netlifyIdentity.off('login');
+        }
     }, []);
-
     return (
-        <div id="netlify-modal">
+        <div className="mainContainer">
+            { isNetlifyClosed && <Spinner className="customSpinner" animation="border" variant="info" />}
+            <div id="netlify-modal">
+            </div>
         </div>
     )
 }

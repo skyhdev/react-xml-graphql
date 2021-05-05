@@ -1,3 +1,12 @@
-.btnClose {
-    display: none;
+.mainContainer{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #F4F4F4;
+}
+
+.customSpinner{
+    width: 4rem !important;
+    height: 4rem !important;
 }

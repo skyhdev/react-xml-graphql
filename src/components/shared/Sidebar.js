@@ -6,16 +6,17 @@ import * as RiIcon from "react-icons/ri";
 import '../../styles/sidebar.css';
 import netlifyIdentity from 'netlify-identity-widget';
 import { useTranslation } from 'react-i18next';
+import { useRealmApp } from '../realm/RealmAppProvider';
 
 function Sidebar(props) {
     const { t } = useTranslation();
     let history = useHistory();
+    const app = useRealmApp();
 
-    let logout = () => {
+    let logout = async () => {
         netlifyIdentity.init();
-        if (!localStorage.getItem("gotrue.user")) {
-            return history.push("/login");
-        }
+        app.logout();
+        localStorage.removeItem("email");
         netlifyIdentity.on('logout', () => {
             return history.push("/login");
         });
@@ -64,7 +65,7 @@ function Sidebar(props) {
                             <div onClick={() => props.setToggleSidebar(!props.toggleSidebar)} className="closeBtn ml-auto mb-2 mr-2 mt-2">
                                 <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <rect opacity="0.3" x="0.5" y="0.5" width="39" height="39" rx="7.5" fill="#C4C4C4" stroke="#505050" />
-                                    <path d="M11 29L29 11M11 11L29 29L11 11Z" stroke="#757575" stroke-width="2" />
+                                    <path d="M11 29L29 11M11 11L29 29L11 11Z" stroke="#757575" strokeWidth="2" />
                                 </svg>
                             </div>
                         </div>

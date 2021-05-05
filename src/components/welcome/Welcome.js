@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import Layout from '../shared/Layout';
 import './welcome.css';
 import { useTranslation } from 'react-i18next';
+import { storage } from '../firebase/firebase';
 
 function Welcome() {
     const { t } = useTranslation();
@@ -53,11 +54,38 @@ function Welcome() {
     useEffect(() => {
         if (file?.name) {
             setFileName(file.name);
+        } else {
+            setFileName("")
         }
     }, [file])
 
     const openImgUpload = () => {
         selectRef.current.click();
+    }
+
+    const uploadFile = () => {
+        if (file) {
+            const uploadTask = storage.ref(`files/${file.name}`).put(file);
+            uploadTask.on(
+                "state_changed",
+                snapshot => { },
+                error => {
+                    console.log(error);
+                },
+                () => {
+                    storage
+                        .ref("files")
+                        .child(file.name)
+                        .getDownloadURL()
+                        .then(url => {
+                            setFile(null)
+                            fileName("")
+                            console.log(url);
+                            // setUrl(url);
+                        });
+                }
+            );
+        }
     }
 
     return (
@@ -87,7 +115,7 @@ function Welcome() {
                                     {fileName}
                                 </div>
                                 <div>
-                                    <button className="uploadBtn" onClick="">{t('Upload')}</button>
+                                    <button className="uploadBtn" onClick={uploadFile}>{t('Upload')}</button>
                                 </div>
                             </div>
                         </div>
