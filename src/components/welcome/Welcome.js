@@ -79,7 +79,7 @@ function Welcome() {
                         .getDownloadURL()
                         .then(url => {
                             setFile(null)
-                            fileName("")
+                            setFileName("")
                             console.log(url);
                             // setUrl(url);
                         });
